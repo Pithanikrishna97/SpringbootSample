@@ -1,0 +1,32 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Build and Push Docker Image') {
+      steps {
+        script {
+          def imageName = "<your-registry>/<your-repo>:latest"
+          def registryCreds = credentials('REGISTRY_CREDS_ID')
+          docker.withRegistry('', registryCreds) {
+            sh "docker build -t ${imageName} ."
+            sh "docker push ${imageName}"
+          }
+        }
+      }
+    }
+
+    stage('Deploy to EKS Cluster') {
+      steps {
+        withCredentials([file(credentialsId: 'KUBECONFIG_CREDS_ID', variable: 'KUBECONFIG')]) {
+          sh 'kubectl apply -f deployment.yaml'
+        }
+      }
+    }
+  }
+}

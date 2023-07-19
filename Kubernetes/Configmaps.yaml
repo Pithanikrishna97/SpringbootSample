@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-spring-boot-app-config
+data:
+  application.properties: |-
+    # Add your application properties here
