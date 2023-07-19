@@ -24,6 +24,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: your-registry/your-repo:latest
+          tags: vamsikrishna1997/krishna:1
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
