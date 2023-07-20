@@ -25,7 +25,7 @@ jobs:
           context: .
           push: true
           tags: vamsikrishna1997/krishna:1
-       env:
+        env:
           REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
