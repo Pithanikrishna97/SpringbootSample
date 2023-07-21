@@ -1,0 +1,36 @@
+name: CI/CD Springboot
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: adopt
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .github/workflows/
+          push: true
+          tags: vamsikrishna1997/krishna:1
+        env:
+          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Save state
+        run: echo "::save-state name={name}::{value}"
+
+      - name: Set output
+        run: echo "::set-output name={name}::{value}"
