@@ -5,7 +5,7 @@ FROM openjdk:11-jdk-slim
 WORKDIR /app
 
 # Copy the packaged JAR file into the container at /app
-ADD target/*.jar /app/my-spring-boot-app.jar
+COPY .github/workflows /app/my-spring-boot-app.jar
 
 # Expose the port that the application listens on
 EXPOSE 8080
