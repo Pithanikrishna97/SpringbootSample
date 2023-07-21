@@ -28,7 +28,7 @@ jobs:
           echo "Maven Surefire Reports:"
           ls -R target/surefire-reports
           echo "Maven dump files:"
-          ls -R target/dump/*
+          ls -R target/surefire-reports/dump/*
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
