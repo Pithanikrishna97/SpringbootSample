@@ -23,13 +23,6 @@ jobs:
         run: mvn --batch-mode --update-snapshots --fail-at-end clean install -e -X
         continue-on-error: true
 
-      - name: Print Maven test reports and debug info
-        run: |
-          echo "Maven Surefire Reports:"
-          ls -R target/surefire-reports
-          echo "Maven dump files:"
-          ls -R target/surefire-reports/dump/*
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
