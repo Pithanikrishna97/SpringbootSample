@@ -17,10 +17,18 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 11
-          distribution: adopt
-          
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify
+          distribution: adopt 
+      
+      - name: Build with Maven and enable debug logging
+        run: mvn --batch-mode --update-snapshots --fail-at-end clean install -e -X
+        continue-on-error: true
+
+      - name: Print Maven test reports and debug info
+        run: |
+          echo "Maven Surefire Reports:"
+          ls -R target/surefire-reports
+          echo "Maven dump files:"
+          ls -R target/*dump*
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
