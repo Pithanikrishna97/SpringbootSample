@@ -29,8 +29,6 @@ jobs:
           context: .github/workflows/
           push: true
           tags: vamsikrishna1997/krishna:1
-          options: |
-             --user root
         env:
           REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
