@@ -5,10 +5,11 @@ FROM openjdk:11-jdk-slim
 WORKDIR /app
 
 # Copy the packaged JAR file into the container at /app
-COPY .github/workflows /app/my-spring-boot-app.jar
+COPY target/myapp_server-0.0.1-SNAPSHOT.jar /app/myapp_server-0.0.1-SNAPSHOT.jar
 
 # Expose the port that the application listens on
 EXPOSE 8080
 
 # Set the command to run the application when the container starts
-CMD ["java", "-jar", "my-spring-boot-app.jar"]
+CMD ["java", "-jar", "myapp_server-0.0.1-SNAPSHOT.jar"]
+
