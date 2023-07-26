@@ -29,16 +29,17 @@ jobs:
           context: ..
           push: true
           tags: vamsikrishna1997/krishna:1
-          options: |
-            --user root
+          
         env:
           REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
           
-      - name: Save state
-        run: echo "{vamsi}={state}" >> $GITHUB_STATE
+      - name: Save Environment Variables
+        env:
+          NAME: "your_name_value_here"
+        run: echo "NAME=${NAME}" >> $GITHUB_ENV
 
-      - name: Set output
-        run: echo "{vamsi}={output}" >> $GITHUB_OUTPUT
-          
+      - name: Set Output
+        id: get_name_output
+        run: echo "::set-output name=name::${{ env.NAME }}"
